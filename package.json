@@ -1,0 +1,62 @@
+{
+  "name": "feature-hub-mf-demo",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@8.11.0",
+  "scripts": {
+    "bootstrap": "pnpm install",
+    "start": "cross-env NODE_ENV=development webpack serve --config webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,mjs}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,mjs}\"",
+    "ci": "pnpm lint && pnpm format:check && pnpm type-check",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,mjs}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,mjs}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.6.2",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "~19.2.3",
+    "@typescript-eslint/eslint-plugin": "^8.49.0",
+    "@typescript-eslint/parser": "^8.49.0",
+    "cross-env": "^10.1.0",
+    "css-loader": "^7.1.2",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "html-webpack-plugin": "^5.6.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4",
+    "react-refresh": "^0.18.0",
+    "source-map-loader": "^5.0.0",
+    "style-loader": "^4.0.0",
+    "swc-loader": "^0.2.6",
+    "typescript": "^5.9.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.2.2",
+    "webpack-merge": "^5.10.0"
+  },
+  "dependencies": {
+    "@feature-hub/core": "^3.7.0",
+    "@feature-hub/module-loader-federation": "^3.7.0",
+    "@feature-hub/react": "^3.7.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  }
+}
