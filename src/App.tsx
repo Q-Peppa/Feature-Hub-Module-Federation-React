@@ -26,7 +26,7 @@ export default function App({ env, done, reject }: AppProps) {
   return (
     <div style={{ padding: 16, border: '2px solid blue', margin: 8 }}>
       <h2>Remote Feature</h2>
-      <p>这是一个远程 Feature App，通过 Module Federation 加载</p>
+      <p>这是一个远程 React Feature App，通过 Module Federation 加载</p>
       <div style={{ marginTop: 16 }}>
         <button onClick={() => setCount(count + 1)}>Count: {count}</button>
       </div>
