@@ -4,6 +4,7 @@ import { createFeatureHub } from '@feature-hub/core';
 import { FeatureHubContextProvider, FeatureAppLoader } from '@feature-hub/react';
 import { loadFederatedModule } from '@feature-hub/module-loader-federation';
 import { Activity } from 'react';
+import { createGlobalStateService, GLOBAL_STATE_SERVICE_ID } from './services/globalStateService';
 function noop() {}
 const emptyLogger: Logger = {
   info: noop,
@@ -19,6 +20,17 @@ export type FeatureAppConfig = {
 const { featureAppManager } = createFeatureHub('demo:integrator', {
   moduleLoader: loadFederatedModule,
   logger: emptyLogger,
+  featureServiceDefinitions: [
+    {
+      id: GLOBAL_STATE_SERVICE_ID,
+      create() {
+        const ans = () => ({ featureService: createGlobalStateService({ sharedCount: 10000 }) });
+        return {
+          '1.0.0': ans,
+        };
+      },
+    },
+  ],
 });
 
 function App() {
@@ -36,7 +48,6 @@ function App() {
           }}
         >
           {({ featureAppNode, loading, error }) => {
-            console.log(`loading`, loading, error);
             if (error) {
               return (
                 <div style={{ background: '#ffcccc' }}>
